@@ -1,8 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 export default function Navbar() {
+  const navigate = useNavigate();
+  const logout = () => {
+    navigate("/signup");
+    localStorage.clear();
+  };
+  let auth = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="navbar">
       <ul>
@@ -18,9 +24,17 @@ export default function Navbar() {
         <li>
           <Link to="/">Services</Link>
         </li>
-        <li>
-          <Link to="/signup">SignUp</Link>
-        </li>
+        {auth ? (
+          <li>
+            <NavLink onClick={logout} to="/signup">
+              Logout
+            </NavLink>
+          </li>
+        ) : (
+          <li>
+            <Link to="/signup">SignUp</Link>
+          </li>
+        )}
       </ul>
     </div>
   );

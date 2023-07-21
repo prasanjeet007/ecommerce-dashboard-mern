@@ -3,7 +3,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import App from "./App";
 import Footer from "./Footer";
+import Login from "./Login";
 import Navbar from "./Navbar";
+import PrivateComponent from "./PrivateComponent";
 import SignUp from "./SignUp";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -15,8 +17,11 @@ root.render(
       <Navbar />
       <App />
       <Routes>
-        <Route path="/" element={<h1>Hello Home</h1>} />
-        <Route path="add" element={<h1>Hello Add</h1>} />
+        <Route element={<PrivateComponent />}>
+          <Route path="/" element={<h1>Hello Home</h1>} />
+          <Route path="add" element={<h1>Hello Add</h1>} />
+          <Route path="login" element={<Login />} />
+        </Route>
         <Route path="signup" element={<SignUp />} />
       </Routes>
       <Footer />

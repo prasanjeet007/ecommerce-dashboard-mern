@@ -1,16 +1,27 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 export default function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem("user"));
+    if (auth) {
+      navigate("/");
+    }
+  }, []);
   function Register(event) {
-    console.log(name, email, password);
     axios
       .post("http://localhost:5500/register", { name, email, password })
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        setName("");
+        setEmail("");
+        setPassword("");
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);

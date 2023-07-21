@@ -9,11 +9,23 @@ app.use(express.json());
 app.use(cors());
 app.post("/register", async (req, res) => {
   const userCreated = new User(req.body);
-  const userResult = await userCreated.save();
+  let userResult = await userCreated.save();
+  userResult = userResult.toObject();
+  delete userResult.password;
   res.send(userResult);
 });
+app.post("/login", async (req, res) => {
+  if (req.body.email && req.body.password) {
+    let user = await User.findOne(req.body).select("-password");
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(404).send("User Not Found");
+    }
+  }
+});
 app.get("/users", async (req, res) => {
-  const users = await User.find();
+  const users = await User.find().select("-password");
   res.send(users);
 });
 app.get("/", (req, res) => {
