@@ -20,9 +20,9 @@ root.render(
         <Route element={<PrivateComponent />}>
           <Route path="/" element={<h1>Hello Home</h1>} />
           <Route path="add" element={<h1>Hello Add</h1>} />
-          <Route path="login" element={<Login />} />
         </Route>
         <Route path="signup" element={<SignUp />} />
+        <Route path="login" element={<Login />} />
       </Routes>
       <Footer />
     </BrowserRouter>

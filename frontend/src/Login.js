@@ -1,16 +1,29 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    const auth = JSON.parse(localStorage.getItem("user"));
+    if (auth) {
+      navigate("/");
+    }
+  }, []);
   function loginForm(event) {
     axios
       .post("http://localhost:5500/login", { email, password })
       .then((res) => {
-        console.log(res);
         setEmail("");
         setPassword("");
+        if (res.data.statusCode === 404) {
+          alert("Please enter correct crendentials");
+        } else if (res.data.statusCode === 200) {
+          localStorage.setItem("user", JSON.stringify(res.data.message));
+          navigate("/");
+        }
       });
     event.preventDefault();
   }
