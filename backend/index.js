@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongooseConnection = require("./db/connection");
 const User = require("./db/models/user");
+const Product = require("./db/models/product");
 const app = express();
 const port = process.env.PORT || 5500;
 mongooseConnection();
@@ -29,6 +30,11 @@ app.post("/login", async (req, res) => {
       });
     }
   }
+});
+app.post("/add-product", async (req, res) => {
+  const productCreated = new Product(req.body);
+  let productResult = await productCreated.save();
+  res.send(productResult);
 });
 app.get("/users", async (req, res) => {
   const users = await User.find().select("-password");

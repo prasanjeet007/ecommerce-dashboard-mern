@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddProduct from "./AddProduct";
 import App from "./App";
 import Footer from "./Footer";
 import Login from "./Login";
@@ -19,7 +20,7 @@ root.render(
       <Routes>
         <Route element={<PrivateComponent />}>
           <Route path="/" element={<h1>Hello Home</h1>} />
-          <Route path="add" element={<h1>Hello Add</h1>} />
+          <Route path="add-product" element={<AddProduct />} />
         </Route>
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
