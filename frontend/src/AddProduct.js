@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-
+import "./AddProduct.css";
 export default function AddProduct() {
   const [name, setName] = React.useState("");
   const [price, setPrice] = React.useState("");
