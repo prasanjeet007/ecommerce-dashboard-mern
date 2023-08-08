@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import Login from "./Login";
 import Navbar from "./Navbar";
 import PrivateComponent from "./PrivateComponent";
+import ProductList from "./ProductLits";
 import SignUp from "./SignUp";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -19,7 +20,7 @@ root.render(
       <App />
       <Routes>
         <Route element={<PrivateComponent />}>
-          <Route path="/" element={<h1>Hello Home</h1>} />
+          <Route path="/" element={<ProductList />} />
           <Route path="add-product" element={<AddProduct />} />
         </Route>
         <Route path="signup" element={<SignUp />} />

@@ -36,6 +36,10 @@ app.post("/add-product", async (req, res) => {
   let productResult = await productCreated.save();
   res.send(productResult);
 });
+app.get("/products", async (req, res) => {
+  const products = await Product.find();
+  res.send(products);
+});
 app.get("/users", async (req, res) => {
   const users = await User.find().select("-password");
   res.send(users);
