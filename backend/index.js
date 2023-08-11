@@ -44,6 +44,10 @@ app.get("/users", async (req, res) => {
   const users = await User.find().select("-password");
   res.send(users);
 });
+app.delete("/product/:id", async (req, res) => {
+  const users = await Product.findByIdAndDelete({ _id: req.params.id });
+  res.send(users);
+});
 app.get("/", (req, res) => {
   res.send("App is working");
 });

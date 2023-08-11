@@ -16,10 +16,8 @@ const ProductList = () => {
   };
 
   const deleteProduct = async (id) => {
-    console.warn(id);
-    let result = axios.delete(`http://localhost:5500/product/${id}`);
-    result = await result.data;
-    if (result) {
+    let result = await axios.delete(`http://localhost:5500/product/${id}`);
+    if (result?.data) {
       getProducts();
     }
   };
