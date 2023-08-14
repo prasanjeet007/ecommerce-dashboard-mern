@@ -9,6 +9,7 @@ import Navbar from "./Navbar";
 import PrivateComponent from "./PrivateComponent";
 import ProductList from "./ProductLits";
 import SignUp from "./SignUp";
+import UpdateProduct from "./UpdateProduct";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
@@ -22,6 +23,7 @@ root.render(
         <Route element={<PrivateComponent />}>
           <Route path="/" element={<ProductList />} />
           <Route path="add-product" element={<AddProduct />} />
+          <Route path="update-product/:id" element={<UpdateProduct />} />
         </Route>
         <Route path="signup" element={<SignUp />} />
         <Route path="login" element={<Login />} />
