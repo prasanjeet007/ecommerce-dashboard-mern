@@ -59,6 +59,17 @@ app.get("/product/:id", async (req, res) => {
     });
   }
 });
+app.put("/product/:id", async (req, res) => {
+  const product = await Product.findByIdAndUpdate({ _id: req.params.id },{$set:{...req.body}},{new:true});
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({
+      errorCode: 404,
+      message: "Product not found",
+    });
+  }
+});
 app.get("/", (req, res) => {
   res.send("App is working");
 });

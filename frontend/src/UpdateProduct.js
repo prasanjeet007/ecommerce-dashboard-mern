@@ -1,12 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {useNavigate, useParams} from 'react-router-dom';
 import "./AddProduct.css";
+import axios from "axios";
 export default function UpdateProduct() {
   const [name, setName] = React.useState("");
   const [price, setPrice] = React.useState("");
   const [category, setCategory] = React.useState("");
-  const [company, setCompnay] = React.useState("");
-  function updateProduct() {
-    console.log("update");
+  const [company, setCompany] = React.useState("");
+  const params = useParams();
+  const navigate = useNavigate();
+  useEffect(()=>{
+    console.log('params',params["id"]);
+    fetchProductData(params["id"]);
+  },[params]);
+  async function fetchProductData(id){
+    let result = axios.get("http://localhost:5500/product/"+id);
+    result = await result;
+    setName(result?.data?.name);
+    setPrice(result?.data?.price);
+    setCategory(result?.data?.category);
+    setCompany(result?.data?.company);
+  }
+  async function updateProduct(){
+    let updatedResult = axios.put("http://localhost:5500/product/"+params["id"],{name,price,category,company});
+    updatedResult = await updatedResult;
+    setName("");
+    setCategory("");
+    setCompany("");
+    setPrice("");
+    navigate('/');
   }
   return (
     <div className="product">
@@ -47,7 +69,7 @@ export default function UpdateProduct() {
         className="inputBox"
         value={company}
         onChange={(e) => {
-          setCompnay(e.target.value);
+          setCompany(e.target.value);
         }}
       />
 
