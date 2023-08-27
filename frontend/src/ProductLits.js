@@ -25,8 +25,8 @@ const ProductList = () => {
   const searchHandle = async (event) => {
     let key = event.target.value;
     if (key) {
-      let result = await fetch(`http://localhost:5000/search/${key}`);
-      result = await result.json();
+      let result = await axios.get(`http://localhost:5500/search/${key}`);
+      result = await result.data;
       if (result) {
         setProducts(result);
       }

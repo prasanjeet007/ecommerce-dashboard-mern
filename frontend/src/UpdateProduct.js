@@ -22,8 +22,7 @@ export default function UpdateProduct() {
     setCompany(result?.data?.company);
   }
   async function updateProduct(){
-    let updatedResult = axios.put("http://localhost:5500/product/"+params["id"],{name,price,category,company});
-    updatedResult = await updatedResult;
+    axios.put("http://localhost:5500/product/"+params["id"],{name,price,category,company});
     setName("");
     setCategory("");
     setCompany("");
