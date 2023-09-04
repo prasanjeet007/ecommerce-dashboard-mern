@@ -17,7 +17,9 @@ export default function SignUp() {
     axios
       .post("http://localhost:5500/register", { name, email, password })
       .then((res) => {
+        console.log('response',res)
         localStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.setItem("auth", JSON.stringify(res.data.auth));
         setName("");
         setEmail("");
         setPassword("");

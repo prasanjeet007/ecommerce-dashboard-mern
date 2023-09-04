@@ -16,6 +16,9 @@ export default function AddProduct() {
 
     const userId = JSON.parse(localStorage.getItem("user"))._id;
     let result = axios.post("http://localhost:5500/add-product", {
+      headers:{
+        Authorization:'Bearer ' + JSON.parse(localStorage.getItem('auth'))
+      }},{
       name,
       price,
       category,

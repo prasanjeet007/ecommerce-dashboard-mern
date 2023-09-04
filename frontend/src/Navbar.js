@@ -29,7 +29,7 @@ export default function Navbar() {
             </li>
             <li>
               <NavLink onClick={logout} to="/signup">
-                Logout ({auth?.name})
+                Logout ({auth?.message?.name})
               </NavLink>
             </li>
           </>

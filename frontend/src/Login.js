@@ -14,7 +14,10 @@ export default function Login() {
   }, []);
   function loginForm(event) {
     axios
-      .post("http://localhost:5500/login", { email, password })
+      .post("http://localhost:5500/login",{
+        headers:{
+          Authorization:'Bearer ' + JSON.parse(localStorage.getItem('auth'))
+        }}, { email, password })
       .then((res) => {
         setEmail("");
         setPassword("");
